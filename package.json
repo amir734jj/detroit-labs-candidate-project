@@ -1,6 +1,6 @@
 {
-  "name": "ts-es6-boilerplate",
-  "description": "Basic boilerplate for Typescript projects targetting ES6",
+  "name": "detroit-labs",
+  "description": "Detroit labs candidate project",
   "private": true,
   "devDependencies": {
   },
