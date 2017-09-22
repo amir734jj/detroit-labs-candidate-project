@@ -7,3 +7,6 @@ Candidate project for Detroit Labs
     npm install
     npm start
 ```
+
+Demo:
+https://detroit-labs.herokuapp.com/
