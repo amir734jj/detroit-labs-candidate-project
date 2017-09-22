@@ -3,9 +3,9 @@ Candidate project for Detroit Labs
 ### make sure to have [node.js](https://nodejs.org/en/) installed.
 
 
-```
-    npm install
-    npm start
+```ruby
+npm install
+npm start
 ```
 
 Demo:
