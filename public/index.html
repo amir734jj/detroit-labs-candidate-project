@@ -15,7 +15,7 @@
 
   <!-- custom -->
   <link rel="stylesheet" href="style.css">
-  <script src="script.css"></script>
+  <script src="script.js"></script>
 
 </head>
 
@@ -23,9 +23,10 @@
 
   <div class="container" ng-app="roverApp" ng-controller="roverCtrl" ng-cloak>
     <div class="row">
-      <div class="col-sm-4">
+      <div class="col-sm-12">
         <h3>Welcome to rover app</h3>
-        <p ng-show="initialized">({{x}}, {{y}}) => {{direction}}</p>
+        <h3 ng-show="initialized">({{x}}, {{y}}) >>-->> {{direction}}</h3>
+        <h3 ng-show="!initialized">initialize the rover by clicking on "initialize" button</h3>
 
         <hr />
 
@@ -34,29 +35,30 @@
             <button class="btn btn-primary" ng-click="move('NORTH')" ng-disabled="!initialized">NORTH</button>
           </div>
           <div class="container row">
-            <button class="btn btn-success" ng-click="move('EAST')" ng-disabled="!initialized">EAST</button>
-            <button class="btn btn-danger" ng-click="init()">init</button>
             <button class="btn btn-success" ng-click="move('WEST')" ng-disabled="!initialized">WEST</button>
+            <button class="btn btn-danger" ng-click="init()">initialize</button>
+            <button class="btn btn-success" ng-click="move('EAST')" ng-disabled="!initialized">EAST</button>
           </div>
           <div class="container row">
             <button class="btn btn-primary" ng-click="move('SOUTH') " ng-disabled="!initialized">SOUTH</button>
           </div>
         </div>
+      </div>
+    </div>
+    <hr />
 
-        <hr />
+    <div class="row">
+      <div class="col-sm-6">
+        <h3>Initialization options</h3>
 
         <div class="form-group">
           <label>X variable:</label>
           <input type="number" class="form-control" min="1" value="1" ng-disabled="initialized">
         </div>
-
-
         <div class="form-group">
           <label>Y variable:</label>
           <input type="number" class="form-control" min="1" value="1" ng-disabled="initialized">
         </div>
-
-
         <div class="form-group">
           <label>Direction:</label>
           <div class="radio">
@@ -72,8 +74,19 @@
             <label><input type="radio" ng-model="direction" value="WEST" ng-disabled="initialized">west</label>
           </div>
         </div>
-
       </div>
+
+      <div class="col-sm-6">
+        <h3>Api reference</h3>
+        <pre>
+/api/rover/init?x={x coordinate}&y={y coordinate}&direction={direction enum}
+
+/api/rover/move/{direction enum}
+
+{direction enum} => ['NORTH', 'SOUTH', 'EAST', 'WEST']
+        </pre>
+      </div>
+
     </div>
   </div>
 

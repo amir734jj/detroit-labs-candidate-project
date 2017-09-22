@@ -1,13 +1,12 @@
 var app = angular.module('roverApp', []);
-app.controller('roverCtrl', ['$scope', '$http', function($scope, $http) {
-    $scope.x = 0;
-    $scope.y = 0;
-    $scope.direction = 'NORTH';
+app.constant("roverApiPrefix", "api/rover");
+app.controller('roverCtrl', ['$scope', '$http', 'roverApiPrefix', function($scope, $http, roverApiPrefix) {
     $scope.dimension = {};
     $scope.initialized = false;
 
     $scope.init = function(direction) {
-      $http.post("/init/", {
+      setDefault();
+      $http.post(roverApiPrefix + "/init/", {
         x: $scope.x,
         y: $scope.y,
         direction: $scope.direction
@@ -18,14 +17,24 @@ app.controller('roverCtrl', ['$scope', '$http', function($scope, $http) {
     };
 
     $scope.move = function(direction) {
-      $http.post("/move/" + direction).then(function(response) {
+      $http.post(roverApiPrefix + "/move/" + direction).then(function(response) {
         setVariables(response.data);
       });
     };
 
     var setVariables = function(data) {
-       Object.keys(data).map(function(key) {
-         $scope[key] = data[key];
+       Object.keys(data.coordinate).map(function(key) {
+         $scope[key] = data.coordinate[key];
        });
+
+       $scope.direction = data.direction.toUpperCase();
     };
+
+    var setDefault = function() {
+      $scope.x = 0;
+      $scope.y = 0;
+      $scope.direction = 'NORTH';
+    }
+
+    setDefault();
 }]);

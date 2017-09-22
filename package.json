@@ -1,0 +1,14 @@
+{
+  "name": "ts-es6-boilerplate",
+  "description": "Basic boilerplate for Typescript projects targetting ES6",
+  "private": true,
+  "devDependencies": {
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.1",
+    "express": "^4.15.4"
+  }
+}
