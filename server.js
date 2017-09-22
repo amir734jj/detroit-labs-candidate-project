@@ -15,8 +15,8 @@ var router = express.Router();
 
 // Rover logic, converted from Rover.ts
 var Rover = require('./models/Rover.ts.js')({
-  height: 50,
-  width: 50
+  height: 100,
+  width: 100
 });
 
 var _ROVER_ = null;

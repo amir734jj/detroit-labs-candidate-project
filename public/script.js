@@ -1,11 +1,10 @@
 var app = angular.module('roverApp', []);
 app.constant("roverApiPrefix", "api/rover");
-app.controller('roverCtrl', ['$scope', '$http', 'roverApiPrefix', function($scope, $http, roverApiPrefix) {
+app.controller('roverCtrl', ['$scope', '$http', '$timeout', 'roverApiPrefix', function($scope, $http, $timeout, roverApiPrefix) {
     $scope.dimension = {};
     $scope.initialized = false;
 
-    $scope.init = function(direction) {
-      setDefault();
+    $scope.init = function() {
       $http.post(roverApiPrefix + "/init/", {
         x: $scope.x,
         y: $scope.y,
@@ -34,7 +33,10 @@ app.controller('roverCtrl', ['$scope', '$http', 'roverApiPrefix', function($scop
       $scope.x = 0;
       $scope.y = 0;
       $scope.direction = 'NORTH';
-    }
+    };
 
-    setDefault();
+    $timeout(function() {
+      setDefault();
+    });
+
 }]);
